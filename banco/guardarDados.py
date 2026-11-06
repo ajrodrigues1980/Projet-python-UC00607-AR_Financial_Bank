@@ -1,3 +1,5 @@
+"""Persistência do banco: clientes e saldos em JSON, movimentos em CSV."""
+
 import json
 import csv
 import os
@@ -8,12 +10,19 @@ FICHEIRO_CLIENTES = "dados/sistema_bancario.json"
 FICHEIRO_MOVIMENTOS = "dados/movimentos.csv"
 
 def garantirPastaDados():
-    #verifica e criar a pasta "dados" caso não exista
+    """Cria a pasta dados se ainda não existir, para os ficheiros poderem ser gravados."""
     if not os.path.exists("dados"):
         os.makedirs("dados")
 
 
 def guardarDados(bdClientes: dict, bdContas: dict, bdMovimento: list):
+    """Grava clientes e saldos em JSON e o histórico de movimentos em CSV.
+
+    Args:
+        bdClientes: clientes em memória, indexados por username.
+        bdContas: contas em memória, indexadas por username.
+        bdMovimento: histórico de movimentos em memória.
+    """
     
     garantirPastaDados()
     
@@ -40,7 +49,15 @@ def guardarDados(bdClientes: dict, bdContas: dict, bdMovimento: list):
 
 
 def carregarDados(bdClientes: dict, bdContas: dict, bdMovimento: list):
-    # Carrega os dados de Clientes, Contas e Movimentos do ficheiro JSON e CSV para os dicionários e lista correspondentes.
+    """Carrega clientes, saldos e movimentos dos ficheiros para a memória.
+
+    Se um ficheiro ainda não existir, essa parte fica vazia.
+
+    Args:
+        bdClientes: dicionário que recebe os clientes.
+        bdContas: dicionário que recebe as contas.
+        bdMovimento: lista que recebe os movimentos.
+    """
     # Carrega o conteudo do JSON se ele existir
     if os.path.exists(FICHEIRO_CLIENTES):
         with open(FICHEIRO_CLIENTES, "r", encoding="utf-8") as f:

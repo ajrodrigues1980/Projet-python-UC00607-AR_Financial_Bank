@@ -1,22 +1,27 @@
-from dataclasses import dataclass
-from datetime import datetime
+"""Estruturas do sistema: utilizador, conta e transação."""
 
-"""Criação das classes Cliente e Conta e Transação usando dataclasses
-# para simplificar a definição de classes com atributos."""
+from dataclasses import dataclass
+
+
 @dataclass
 class Cliente:
+    """Utilizador do sistema: username único e password."""
     username: str
     password: str
-    
+
+
 @dataclass
 class Conta:
+    """Conta associada a um utilizador, com o saldo atual."""
     username: str
     saldo: float = 0.0
 
+
 @dataclass
 class Transacao:
+    """Movimento entre contas, ou da própria conta no depósito e no levantamento."""
     userOrigem: str
     userDestino: str
-    tipo: str  # "depósito" ou "levantamento"
+    tipo: str
     valor: float
     data_hora: str

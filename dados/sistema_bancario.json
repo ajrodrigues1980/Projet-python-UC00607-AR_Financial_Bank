@@ -1,6 +1,10 @@
 {
     "ajrodrigues1980": {
         "password": "abcde12345",
-        "saldo": 350.0
+        "saldo": 5075.0
+    },
+    "ajrodrigues": {
+        "password": "abcde12345",
+        "saldo": 1425.0
     }
 }
