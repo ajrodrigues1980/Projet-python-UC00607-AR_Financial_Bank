@@ -216,3 +216,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Firebase service account (nunca enviar para o GitHub)
+chave.json

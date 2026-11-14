@@ -32,6 +32,7 @@ from banco.excecoes import (
     PasswordInvalidaError,
     ValorInvalidoError,
 )
+from banco.firestore import testar_ligacao
 
 # Inicializar as "Bases de Dados" na memória RAM
 bdClientes = {}
@@ -44,10 +45,20 @@ def limpar_ecra():
 
 def main():
     """Arranca o banco, carrega os dados e gere os menus até o utilizador sair."""
+    # Testa ligação ao Firestore
+    try:
+        testar_ligacao()
+        print("Ligação ao Firestore: OK")
+    except Exception as e:
+        print(f"Erro ao ligar ao Firestore: {e}")
+        print("Verifica se chave.json está na pasta do projeto.")
+        return
+    
     # Carrega dados guardados no arranque do sistema
     carregarDados(bdClientes, bdContas, bdMovimento)
     
     limpar_ecra()
+    
     if TEM_FIGLET:
         pyfiglet.print_figlet("EISNT Bank", font="slant")
     else:
